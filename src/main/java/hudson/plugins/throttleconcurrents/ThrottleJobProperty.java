@@ -321,7 +321,7 @@ public class ThrottleJobProperty extends JobProperty<Job<?,?>> {
         Map<String,List<FlowNode>> throttledPipelines = new TreeMap<>();
 
         final DescriptorImpl descriptor = fetchDescriptor();
-        for (Map.Entry<String,List<String>> currentPipeline : descriptor.getThrottledPipelinesForCategory(category).entrySet()) {
+        for (Map.Entry<String,List<String>> currentPipeline : new TreeMap<>(descriptor.getThrottledPipelinesForCategory(category)).entrySet()) {
             Run<?, ?> flowNodeRun = Run.fromExternalizableId(currentPipeline.getKey());
             List<FlowNode> flowNodes = new ArrayList<>();
 
